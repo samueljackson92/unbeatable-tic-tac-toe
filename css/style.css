@@ -1,0 +1,6 @@
+#main {margin: 0px auto; text-align: center; font-family: 'Pompiere', cursive;}
+h1, h3 {padding: 0; margin: 0;}
+h1 {font-size: 40pt;}
+h3 {font-size: 20pt;}
+body {background: url('../img/tile.png');}
+canvas {padding: 30px; display: block; margin: 0 auto;}
