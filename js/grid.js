@@ -1,3 +1,8 @@
+// grid.js
+// Date: 14/06/13
+// Author: Samuel Jackson (samueljackson@outlook.com)
+// Description: JavaScript object to manage the current state of a tic-tac-toe grid.
+
 function grid() {
 	this.cells = [0,0,0,0,0,0,0,0,0];
 
