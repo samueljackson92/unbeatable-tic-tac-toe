@@ -3,13 +3,11 @@ var context;
 var PLAYER_TURN = -1;
 var CELL_WIDTH = 100;
 var mainGrid;
-var g;
 
 $(document).ready(function() {
 	canvas = $('#main-canvas')[0];
  	context = canvas.getContext('2d');
  	mainGrid = new grid(); 
- 	g = new graph();
 
 	drawGrid(context);
 
@@ -17,8 +15,6 @@ $(document).ready(function() {
 });
 
 function onMouseClick(evt) {
-	$(canvas).click(false);
-	
 	var x = evt.pageX - canvas.offsetLeft;
 	var y = evt.pageY - canvas.offsetTop;
 
@@ -30,27 +26,27 @@ function onMouseClick(evt) {
 	cell_y = (y - CELL_WIDTH/2)/100;
 
 	var validCell = mainGrid.occupyCell(cell_x,cell_y, PLAYER_TURN);
-	
 	if(validCell) {
 		doPlayerTurn(x,y);
 		doComputerTurn();
 	}
-
-	$(canvas).click(true);
 }
 
 function doPlayerTurn(x,y) {
-	drawCross(context, x,y);
 
+	drawCross(context, x,y);
 	if(checkWinner()) return;
 	switchTurn();
 }
 
 function doComputerTurn() {
-	g.buildGraph(mainGrid, PLAYER_TURN);
-	var best = negamax(g.root, 0);
-	mainGrid.occupyCell(best.xChanged, best.yChanged, PLAYER_TURN);
-	drawCircle(context,(best.xChanged*100)+50, (best.yChanged*100)+50);
+	var best = minimax(mainGrid, 0, PLAYER_TURN);
+
+	var x = best % 3;
+	var y = (best - x) /3;
+
+	mainGrid.occupyCell(x, y, PLAYER_TURN);
+	drawCircle(context,(x*100)+50, (y*100)+50);
 
 	if(checkWinner()) return;
 	switchTurn();
@@ -76,4 +72,3 @@ function checkWinner() {
 function switchTurn() {
 	PLAYER_TURN *= -1;
 }
-

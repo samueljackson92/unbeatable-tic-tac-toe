@@ -47,7 +47,6 @@ function grid() {
 
 	this.checkForDraw = function() {
 		if(!this.checkForWinner()) {
-			var full = true;
 			for(var i =0;i<3;i++){
 				for(var j=0;j<3;j++) {
 					if(this.getCell(j,i) === 0) {
@@ -58,5 +57,7 @@ function grid() {
 
 			return true;
 		}
+
+		return false;
 	}
 }
