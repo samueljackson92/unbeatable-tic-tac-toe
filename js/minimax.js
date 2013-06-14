@@ -34,17 +34,13 @@ function minimax(state, depth, alpha, beta, pturn) {
 				bestMove = children[i];
 			}
 
-			if(beta <= alpha) {
-				break;
-			}
-
 		} else if (pturn < 0) {
 			//we are minimizing
 			beta = Math.min(beta, score);
+		}
 
-			if(beta <= alpha) {
-				break;
-			}
+		if(beta <= alpha) {
+			break;
 		}
 	}
 
